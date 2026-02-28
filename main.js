@@ -1,36 +1,82 @@
 let missions = [];
 let players = [];
 
-function runDev() {
+/* function runDev() {
+  players = [];
+  missions = [];
   new Player("Danilo", 0);
   new Player("Daniel", "potato");
   new Player("Yasmim", "abobora");
   new Player("Natã", "macarrao");
-  new Mission(1, "matar ${p}");
-  new Mission(1, "morrer para ${p}");
-  new Mission(0, "quebra cama");
-  new Mission(0, "quebra fornalha");
-  new Mission(0, "roubar");
+  new Mission(0, "viva");
+  new Mission(0, "morra");
+  new Mission(1, "a ${p}");
+  new Mission(
+    2,
+    "quebra cama de ${p}",
+    "nao deixe sua cama ser quebrada por ${s}",
+  );
+  new Mission(2, "matar ${p}", "nao seja morto por ${s}");
+  new Mission(1, "b ${p}");
+  new Mission(1, "c ${p}");
+  new Mission(1, "d ${p}");
   sort();
   console.log("Jogadores: ", players);
   console.log("Missões: ", missions);
 }
+ */
 
 function sort() {
+  let secoundPlayer;
+  let duo;
   for (i in players) {
+    i = Number(i);
     if (!players[i].mission) {
-      let k = parseInt(Math.random() * missions.length);
+      let k = parseInt(Math.random() * (missions.length - 1));
+      if (missions[k].type == 2 && players.length - i < 2) {
+        k = singlePlayer();
+      }
       if (missions[k].type == 1) {
-        let secoundPlayer = player2(i);
+        secoundPlayer = player2(i);
         missions[k].mission = missions[k].mission.replace(
           "${p}",
           players[secoundPlayer].name,
         );
       }
+      if (missions[k].type == 2) {
+        duo = sortDuo(i);
+        missions[k].mission = missions[k].mission.replace(
+          "${p}",
+          players[duo].name,
+        );
+        missions[k].mission2 = missions[k].mission2.replace(
+          "${s}",
+          players[i].name,
+        );
+        players[duo].mission = new Mission(1, missions[k].mission2);
+        missions.pop();
+      }
       players[i].mission = missions[k];
       missions.splice(k, 1);
     }
   }
+}
+//sort a mission for last player
+function singlePlayer() {
+  let k = parseInt(Math.random() * missions.length);
+  if (missions[k].type == 2) {
+    return singlePlayer();
+  }
+  return k;
+}
+
+//sort a secound player for duo missions
+function sortDuo(id) {
+  let sorted = parseInt(Math.random() * (players.length - id)) + Number(id);
+  if (sorted == id) {
+    return sortDuo(id);
+  }
+  return sorted;
 }
 
 //sort another player for complex missions
@@ -250,3 +296,10 @@ let dictionary = {
   Ú: 117,
   Ç: 118,
 };
+
+document.getElementById("addUser").addEventListener("submit", function (event) {
+  console.log(event);
+  event.preventDefault();
+});
+
+//runDev();

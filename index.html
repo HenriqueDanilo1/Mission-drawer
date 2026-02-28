@@ -8,23 +8,58 @@
   </head>
   <body>
     <main>
-      <div id="user">
+      <div id="user" class="sections">
         <div>
           <form id="addUser">
+            <h2>Adicionar jogador</h2>
             <input
               type="text"
-              id="name"
+              name="name"
               placeholder="Nome do jogador"
               required
+              autocomplete="off"
             />
-            <input type="text" id="name" placeholder="Senha do jogador" />
+            <input
+              type="text"
+              name="pass"
+              placeholder="Senha do jogador"
+              required
+              autocomplete="off"
+            />
             <span>Digite "0" para usar o nome como senha</span>
+            <input type="submit" value="Adicionar" />
           </form>
         </div>
-        <div id="decoding"></div>
+        <div>player list</div>
       </div>
-      <div id="peoples"></div>
-      <div id="mission"></div>
+      <div id="mission" class="sections">
+        <div>
+          <form id="addMission">
+            <h2>Adicionar missões</h2>
+            <input
+              type="text"
+              name="name"
+              placeholder="Nome do jogador"
+              required
+              autocomplete="off"
+            />
+            <input
+              type="text"
+              name="pass"
+              placeholder="Senha do jogador"
+              required
+              autocomplete="off"
+            />
+            <span>Digite "0" para usar o nome como senha</span>
+            <input type="submit" value="Adicionar" />
+          </form>
+        </div>
+        <div></div>
+      </div>
+      <div id="peoples" class="sections">
+        <div id="decoding">Decode</div>
+        <div>See my pets</div>
+      </div>
     </main>
     <script src="main.js"></script>
   </body>

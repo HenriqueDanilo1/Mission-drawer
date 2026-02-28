@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: #313131;
+  background-color: #1e2225;
 }
 
 main {
@@ -13,11 +13,31 @@ main {
   grid-template-columns: repeat(3, 1fr);
 }
 
-#user {
+.sections {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
 }
 
-#addUser {
+.sections > div:first-child {
+  margin-bottom: 0;
+}
+
+main .sections:last-child div {
+  margin-right: 5%;
+}
+
+form {
   display: block;
+  justify-content: center;
+}
+
+.sections div {
+  display: block;
+  background-color: #262a2d;
+  height: 30dvh;
+  width: auto;
+  margin: 5%;
+  margin-right: 0;
+  border-radius: 3%;
+  padding: 5px;
 }
